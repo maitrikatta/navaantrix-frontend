@@ -1,0 +1,46 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.editObject {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.editObject > span {
+  flex-grow: 1;
+  display: flex;
+  justify-content: start;
+  padding-left: 4px;
+  align-items: center;
+  border: 1px solid silver;
+}
+.inputWrapper > span:nth-child(3) {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.inputWrapper > span:nth-child(3) > button:first-child {
+  flex-grow: 1;
+}
+.editBtn {
+  padding: 4px;
+}
+.fieldItemRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 24px;
+  border-radius: 4px;
+  background-color: var(--bg-dark-2);
+}
+
+.insertedField {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}

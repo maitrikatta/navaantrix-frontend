@@ -1,0 +1,22 @@
+.card {
+  min-height: 48px;
+  background-color: var(--bg-dark-1);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 3px silver;
+}
+.cardTitle {
+  font-size: 14px;
+  font-family: "Poppins Light";
+  background-color: var(--bg-dark-3);
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.cardDarkOne {
+  background-color: var(--bg-dark-1);
+}
+.cardDarkTwo {
+  background-color: var(--bg-dark-2);
+}

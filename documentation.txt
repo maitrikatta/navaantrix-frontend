@@ -1,0 +1,60 @@
+For question number one.
+
+CRUD: Create, Read, Update, Delete.
+CSV: Comma Seperated Values.
+
+Problem Statement: 
+    It seems author wants perform CRUD operation in bulk using CSV.
+
+Approach:
+    #To take csv files and perform action types, we will need have a interface or small dashboard.
+        - There will be frontend code (ReactJS) taking four types of input with CSV files.
+            1. Create/populate records in database through CSV.
+            2. Update existing records through CSV. (matched id's will be updated)
+            3. Delete existing records through CSV. (matched id's will be deleted)
+            4. Read existing records. ( A button to download all records as CSV)
+                - URL.createObjectURL(new Blob()); // to create and download file
+                - Or we can send download link to file from nodejs as res.sendFile(pathFile)
+    
+    #There will be backend equipped with ExpressJS and MongoDB as database with REST API.
+        - We will create one single end point which will handle four actions via 
+          http methods like GET, POST, DELETE.
+            1. for parsing csv we can leverage the use of csv parser module.
+            2. mongoose is a wrapper library for MongoDB has to be used.
+            3. Since MongoDB is a non SQL database, the rows and tables of MySQL are equivalent 
+               to documents and collections in MongoDB respectively.
+            4. For demonstration we will take student as data with following fields/columns.
+                - rollnumber.
+                - name.
+                - age
+
+            5 which will look like following for each row in MySQL
+                {
+                    rollnumber:100, // used for uniquely identifying documents for RUD.
+                    name: "John Doe",
+                    age:23
+                }
+
+Database: ( will be converting csv into json)
+
+    # insert data in database:
+        - Since we will convert csv into JSON and MongoDB documents are BSON. 
+        - So we can directly insert any number of documents using db.students.insertMany().
+    # update matched data:
+        - I will loop over update JSON array and get the new data.
+        - Perform find using roll number and perform update query for each.
+            updateData.forEach((student)=>{
+                const roll = student.rollnumber;
+                const newDoc = {...student};
+                delete newDoc.rollnumber;
+                db.student.findOneAndUpdate({rollnumber:roll}, newDoc);
+            });
+   # delete matched data:
+        - To delete documents from database, we will just take all rollnumber and make an array.
+             const rollNumbers =  deleteData.map((stud)=> stud.rollnumber);
+             db.students.deleteMany({
+                    rollnumber:{$in: rollnumbers }
+                })
+      
+   # read all data (if present):
+        const data = db.student.find({}).lean();  // instead of mongoose documents, lean() will make query more performant and give plain old Javascript objects as result.

@@ -1,0 +1,12 @@
+:root {
+  --focused-input: blue;
+  --unfocused-input: black;
+  --input-gap: 18px;
+  --bg-dark-1: rgb(40, 40, 40);
+  --bg-dark-2: rgb(80, 80, 80);
+  --bg-dark-3: #3d5361;
+  --bg-light-1: rgb(245, 238, 230);
+  --success-green: #74e291;
+  --error-red: #ff004d;
+  --brand-color: #4477ce;
+}
